@@ -42,14 +42,14 @@ namespace dadabase.Controllers
         [HttpDelete("{id}")]
         public async Task Delete(int id)
         {
-            _logger.LogInformation("DELETE request received for Audience controller.");
+            _logger.LogInformation("DELETE request received for Audience controller.for {id}.", id);
             await dataStore.DeleteAudience(id);
         }
 
         [HttpGet("{id}")]
         public async Task<IResult> Get(int id)
         {
-            _logger.LogInformation("GET/id request received for Audience controller.");
+            _logger.LogInformation("GET/id request received for Audience controller.for {id}.", id);
             var audience = await dataStore.GetAudience(id);
             if (audience == null)
             {

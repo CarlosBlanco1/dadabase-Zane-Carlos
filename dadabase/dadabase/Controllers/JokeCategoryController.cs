@@ -42,14 +42,14 @@ namespace dadabase.Controllers
         [HttpDelete("{id}")]
         public async Task Delete(int id)
         {
-            _logger.LogInformation("DELETE request received for JokeCategory controller.");
+            _logger.LogInformation("DELETE request received for JokeCategory controller. for {id}.", id);
             await dataStore.DeleteJokecategory(id);
         }
 
         [HttpGet("{id}")]
         public async Task<IResult> Get(int id)
         {
-            _logger.LogInformation("GET/id request received for JokeCategory controller.");
+            _logger.LogInformation("GET/id request received for JokeCategory controller. for {id}.", id);
             var joke = await dataStore.GetJokecategory(id);
             if (joke == null)
             {

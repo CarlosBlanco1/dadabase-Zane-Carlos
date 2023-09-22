@@ -42,7 +42,7 @@ namespace dadabase.Controllers
         [HttpDelete("{id}")]
         public async Task Delete(int id)
         {
-            _logger.LogInformation("DELETE request received for Joke controller.");
+            _logger.LogInformation("DELETE request received for Joke controller for {id}.", id);
             await dataStore.DeleteJoke(id);
         }
 
@@ -56,7 +56,7 @@ namespace dadabase.Controllers
         [HttpGet("{id}")]
         public async Task<IResult> Get(int id)
         {
-            _logger.LogInformation("GET/id request received for Joke controller.");
+            _logger.LogInformation("GET/id request received for Joke controller.for {id}.", id);
             var joke = await dataStore.GetJoke(id);
             if (joke == null)
             {

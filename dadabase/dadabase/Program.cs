@@ -14,7 +14,7 @@ builder.Services.AddScoped<IAudienceStore, PostgresAudienceDataStore>();//scoped
 builder.Services.AddScoped<IJokeCategoryStore, PostgresJokeCategoryDataStore>();//scoped not singleton
 builder.Services.AddScoped<IJokereactioncategoryStore, PostgresJokeReactionCategoryDataStore>();//scoped not singleton
 
-builder.Configuration.AddJsonFile("secrets.json", optional: true, reloadOnChange: true); //add secretfile
+//builder.Configuration.AddJsonFile("secrets.json", optional: true, reloadOnChange: true); //add secretfile
 builder.Services.AddDbContext<JokeContext>(options =>
 {
     options.UseNpgsql(builder.Configuration["ConnectionStrings:Dadabase"]);

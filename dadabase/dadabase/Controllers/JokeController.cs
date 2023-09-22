@@ -4,13 +4,13 @@ using dadabase.Data;
 namespace dadabase.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("v1/[controller]")]
     public class JokeController : Controller
     {
         private readonly ILogger<JokeController> _logger;
-        private readonly IDataStore dataStore;
+        private readonly IJokeStore dataStore;
 
-        public JokeController(ILogger<JokeController> logger, IDataStore dataStore)
+        public JokeController(ILogger<JokeController> logger, IJokeStore dataStore)
         {
             _logger = logger;
             this.dataStore = dataStore;
@@ -40,6 +40,13 @@ namespace dadabase.Controllers
         public async Task Delete(int id)
         {
             await dataStore.DeleteJoke(id);
+        }
+
+        [HttpGet("/TimesTold/{id}")]
+        public async Task<int> GetTimesTold(List<DeliveredJoke>() jokes)
+        {
+
+            return jokes.Count();
         }
 
         [HttpGet("{id}")]

@@ -2,7 +2,7 @@
 
 namespace dadabase.Data
 {
-    public class PostgresDataStore: IDataStore
+    public class PostgresDataStore: IJokeStore
     {
         private readonly JokeContext context;
         private readonly ILogger<PostgresDataStore> logger;

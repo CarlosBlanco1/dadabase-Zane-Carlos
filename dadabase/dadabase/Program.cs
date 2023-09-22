@@ -9,12 +9,12 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IDataStore, PostgresDataStore>();//scoped not singleton
+builder.Services.AddScoped<IJokeStore, PostgresDataStore>();//scoped not singleton
 
-//builder.Configuration.AddJsonFile("secrets.json", optional: true, reloadOnChange: true); //add secretfile
+builder.Configuration.AddJsonFile("secrets.json", optional: true, reloadOnChange: true); //add secretfile
 builder.Services.AddDbContext<JokeContext>(options =>
 {
-    options.UseNpgsql(builder.Configuration["ConnectionStrings: Dadabase"]);
+    options.UseNpgsql(builder.Configuration["ConnectionStrings:Dadabase"]);
 });
 //builder.Services.AddHostedService<MigrationService>();
 

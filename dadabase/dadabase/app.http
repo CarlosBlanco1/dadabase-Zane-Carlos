@@ -1,0 +1,87 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+
+@server = https://localhost:7150
+
+GET {{server}}/v1/Joke
+
+###
+POST {{server}}/v1/DelieveredJoke
+
+###
+
+GET {{server}}/v1/Joke/TimesTold/id
+
+
+###
+
+POST {{server}}/v1/Joke
+Content-Type: application/json
+
+{
+  "id": 0,
+  "jokename": "string",
+  "joketext": "string",
+  "categorizedjokes": [
+    {
+      "id": 0,
+      "jokeid": 0,
+      "jokecategoryid": 0,
+      "joke": "string",
+      "jokecategory": {
+        "id": 0,
+        "categoryname": "string",
+        "description": "string",
+        "categorizedjokes": [
+          "string"
+        ]
+      }
+    }
+  ],
+  "deliveredjokes": [
+    {
+      "id": 0,
+      "delivereddate": "2023-09-22",
+      "jokereactionid": 0,
+      "jokeid": 0,
+      "audienceid": 0,
+      "notes": "string",
+      "audience": {
+        "id": 0,
+        "audiencename": "string",
+        "description": "string",
+        "categorizedaudiences": [
+          {
+            "id": 0,
+            "audienceid": 0,
+            "audiencecategoryid": 0,
+            "audience": "string",
+            "audiencecategory": {
+              "id": 0,
+              "categoryname": "string",
+              "description": "string",
+              "categorizedaudiences": [
+                "string"
+              ]
+            }
+          }
+        ],
+        "deliveredjokes": [
+          "string"
+        ]
+      },
+      "joke": "string",
+      "jokereaction": {
+        "id": 0,
+        "reactionlevel": "string",
+        "description": "string",
+        "deliveredjokes": [
+          "string"
+        ]
+      }
+    }
+  ]
+}
+
+###
+
+DELETE {{server}}/v1/Joke/1

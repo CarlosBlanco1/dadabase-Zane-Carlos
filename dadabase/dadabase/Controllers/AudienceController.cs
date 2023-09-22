@@ -4,13 +4,13 @@ using dadabase.Data;
 namespace dadabase.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("v1/[controller]")]
     public class AudienceController : Controller
     {
         private readonly ILogger<AudienceController> _logger;
-        private readonly IDataStore dataStore;
+        private readonly IAudienceStore dataStore;
 
-        public AudienceController(ILogger<AudienceController> logger, IDataStore dataStore)
+        public AudienceController(ILogger<AudienceController> logger, IAudienceStore dataStore)
         {
             _logger = logger;
             this.dataStore = dataStore;

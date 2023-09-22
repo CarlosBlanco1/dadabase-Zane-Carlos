@@ -15,6 +15,7 @@ namespace dadabase.Data
         public DbSet<Audiencecategory> AudienceCategories { get; set; }
         public DbSet<Categorizedaudience> CategorizedAudiences { get; set; }
         public DbSet<Deliveredjoke> DeliveredJokes { get; set; }
+        public DbSet<Jokereactioncategory> Jokereactions { get; set;}
 
     }
 }

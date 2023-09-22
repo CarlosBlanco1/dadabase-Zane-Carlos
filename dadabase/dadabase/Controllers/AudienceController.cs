@@ -19,12 +19,14 @@ namespace dadabase.Controllers
         [HttpGet()]
         public async Task<IEnumerable<Audience>> Get()
         {
+            _logger.LogInformation("GET request received for Audience controller.");
             return await dataStore.GetAllAudiences();
         }
 
         [HttpPost]
         public async Task<Audience> Post([FromBody] Audience audience)
         {
+            _logger.LogInformation("POST request received for Audience controller.");
             var newAudience = await dataStore.AddAudience(audience);
             return newAudience;
         }
@@ -32,6 +34,7 @@ namespace dadabase.Controllers
         [HttpPatch]
         public async Task<Audience> Patch([FromBody] Audience audience)
         {
+            _logger.LogInformation("PATCH request received for Audience controller.");
             var updatedAudience = await dataStore.UpdateAudience(audience);
             return updatedAudience;
         }
@@ -39,12 +42,14 @@ namespace dadabase.Controllers
         [HttpDelete("{id}")]
         public async Task Delete(int id)
         {
+            _logger.LogInformation("DELETE request received for Audience controller.");
             await dataStore.DeleteAudience(id);
         }
 
         [HttpGet("{id}")]
         public async Task<IResult> Get(int id)
         {
+            _logger.LogInformation("GET/id request received for Audience controller.");
             var audience = await dataStore.GetAudience(id);
             if (audience == null)
             {

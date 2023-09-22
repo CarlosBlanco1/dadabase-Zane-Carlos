@@ -19,12 +19,14 @@ namespace dadabase.Controllers
         [HttpGet()]
         public async Task<IEnumerable<Jokereactioncategory>> Get()
         {
+            _logger.LogInformation("GET request received for JokeReactionCategory controller.");
             return await dataStore.GetAllJokereactioncategorys();
         }
 
         [HttpPost]
         public async Task<Jokereactioncategory> Post([FromBody] Jokereactioncategory jokereactioncategory)
         {
+            _logger.LogInformation("POST request received for JokeReactionCategory controller.");
             var newJokereactioncategory = await dataStore.AddJokereactioncategory(jokereactioncategory);
             return newJokereactioncategory;
         }
@@ -32,6 +34,7 @@ namespace dadabase.Controllers
         [HttpPatch]
         public async Task<Jokereactioncategory> Patch([FromBody] Jokereactioncategory jokereactioncategory)
         {
+            _logger.LogInformation("PATCH request received for JokeReactionCategory controller.");
             var updatedJokereactioncategory = await dataStore.UpdateJokereactioncategory(jokereactioncategory);
             return updatedJokereactioncategory;
         }
@@ -39,12 +42,14 @@ namespace dadabase.Controllers
         [HttpDelete("{id}")]
         public async Task Delete(int id)
         {
+            _logger.LogInformation("DELETE request received for JokeReactionCategory controller.");
             await dataStore.DeleteJokereactioncategory(id);
         }
 
         [HttpGet("{id}")]
         public async Task<IResult> Get(int id)
         {
+            _logger.LogInformation("GET/id request received for JokeReactionCategory controller.");
             var joke = await dataStore.GetJokereactioncategory(id);
             if (joke == null)
             {

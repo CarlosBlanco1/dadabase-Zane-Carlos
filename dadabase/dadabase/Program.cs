@@ -9,7 +9,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IJokeStore, PostgresDataStore>();//scoped not singleton
+builder.Services.AddScoped<IJokeStore, PostgresJokeDataStore>();//scoped not singleton
+builder.Services.AddScoped<IAudienceStore, PostgresAudienceDataStore>();//scoped not singleton
+builder.Services.AddScoped<IJokeCategoryStore, PostgresJokeCategoryDataStore>();//scoped not singleton
+builder.Services.AddScoped<IJokereactioncategoryStore, PostgresJokeReactionCategoryDataStore>();//scoped not singleton
 
 builder.Configuration.AddJsonFile("secrets.json", optional: true, reloadOnChange: true); //add secretfile
 builder.Services.AddDbContext<JokeContext>(options =>

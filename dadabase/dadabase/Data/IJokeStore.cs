@@ -7,6 +7,6 @@
         Task<Joke> AddJoke(Joke Joke);
         Task<Joke> UpdateJoke(Joke Joke);
         Task DeleteJoke(int id);
-        Task<int> GetTimesTold(int id);
+        //Task<int> GetTimesTold(int id);
     }
 }

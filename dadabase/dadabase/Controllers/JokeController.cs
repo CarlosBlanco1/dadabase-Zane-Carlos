@@ -19,12 +19,14 @@ namespace dadabase.Controllers
         [HttpGet()]
         public async Task<IEnumerable<Joke>> Get()
         {
+            _logger.LogInformation("GET request received for Joke controller.");
             return await dataStore.GetAllJokes();
         }
 
         [HttpPost]
         public async Task<Joke> Post([FromBody] Joke joke)
         {
+            _logger.LogInformation("POST request received for Joke controller.");
             var newJoke = await dataStore.AddJoke(joke);
             return newJoke;
         }
@@ -32,6 +34,7 @@ namespace dadabase.Controllers
         [HttpPatch]
         public async Task<Joke> Patch([FromBody] Joke joke)
         {
+            _logger.LogInformation("PATCH request received for Joke controller.");
             var updatedJoke = await dataStore.UpdateJoke(joke);
             return updatedJoke;
         }
@@ -39,19 +42,21 @@ namespace dadabase.Controllers
         [HttpDelete("{id}")]
         public async Task Delete(int id)
         {
+            _logger.LogInformation("DELETE request received for Joke controller.");
             await dataStore.DeleteJoke(id);
         }
 
-        [HttpGet("/TimesTold/{id}")]
-        public async Task<int> GetTimesTold(List<DeliveredJoke>() jokes)
+        /*[HttpGet("/TimesTold/{id}")]
+        public async Task<int> GetTimesTold(Joke joke)
         {
 
             return jokes.Count();
-        }
+        }*/
 
         [HttpGet("{id}")]
         public async Task<IResult> Get(int id)
         {
+            _logger.LogInformation("GET/id request received for Joke controller.");
             var joke = await dataStore.GetJoke(id);
             if (joke == null)
             {

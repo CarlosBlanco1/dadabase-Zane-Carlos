@@ -10,6 +10,8 @@
         Task<IEnumerable<Joke>> GetJokesByCategory(string category);
         Task<IEnumerable<Joke>> GetJokesByAudience(string inputAudience);
         Task<IEnumerable<Joke>> GetJokesByReaction();
+        Task<IEnumerable<Joke>> GetJokesRankedGivenCategory(string inputCategory);
+        Task<IEnumerable<Joke>> GetJokesRankedGivenAudience(string inputAudience);
         //Task<int> GetTimesTold(int id);
     }
 }

@@ -87,7 +87,34 @@ namespace dadabase.Data
             var query = from deliveredJoke in context.Deliveredjokes
                         join jokeReactionCategory in context.Jokereactioncategories on deliveredJoke.Jokereactionid equals jokeReactionCategory.Id
                         join joke in context.Jokes on deliveredJoke.Jokeid equals joke.Id
-                        orderby joke.Id ascending
+                        orderby deliveredJoke.Jokereactionid ascending
+                        select joke;
+
+            var results = await query.ToListAsync();
+            return results;
+        }
+
+        public async Task<IEnumerable<Joke>> GetJokesRankedGivenCategory(string inputCategory)
+        {
+            var query = from deliveredJoke in context.Deliveredjokes
+                        join joke in context.Jokes on deliveredJoke.Jokeid equals joke.Id
+                        join categorizedJoke in context.Categorizedjokes on joke.Id equals categorizedJoke.Jokeid 
+                        join jokeCategory in context.Jokecategories on categorizedJoke.Jokecategoryid equals jokeCategory.Id
+                        where jokeCategory.Categoryname == inputCategory
+                        orderby deliveredJoke.Jokereactionid ascending
+                        select joke;
+
+            var results = await query.ToListAsync();
+            return results;
+        }
+
+        public async Task<IEnumerable<Joke>> GetJokesRankedGivenAudience(string inputAudience)
+        {
+            var query = from deliveredJoke in context.Deliveredjokes
+                        join joke in context.Jokes on deliveredJoke.Jokeid equals joke.Id
+                        join audience in context.Audiences on deliveredJoke.Audienceid equals audience.Id
+                        where audience.Audiencename == inputAudience
+                        orderby deliveredJoke.Jokereactionid ascending
                         select joke;
 
             var results = await query.ToListAsync();

@@ -74,11 +74,27 @@ namespace dadabase.Controllers
             return await dataStore.GetJokesByAudience(audience);
         }
 
-        [HttpGet("reaction", Name = "GetJokesByReaction")]
+        [HttpGet("RankedByReaction", Name = "GetJokesRankedByReaction")]
         public async Task<IEnumerable<Joke>> GetJokesByReaction()
         {
             _logger.LogInformation("GET request received for Joke controller.");
             return await dataStore.GetJokesByReaction();
+
+        }
+
+        [HttpGet("RankedByReactionGivenCategory/{inputCategory}", Name = "GetJokesRankedWithCategory")]
+        public async Task<IEnumerable<Joke>> GetJokesByRankedByCategory(string inputCategory)
+        {
+            _logger.LogInformation("GET request received for Joke controller.");
+            return await dataStore.GetJokesRankedGivenCategory(inputCategory);
+
+        }
+
+        [HttpGet("RankedByReactionGivenAudience/{inputAudience}", Name = "GetJokesRankedWithAudience")]
+        public async Task<IEnumerable<Joke>> GetJokesByRankedByAudience(string inputAudience)
+        {
+            _logger.LogInformation("GET request received for Joke controller.");
+            return await dataStore.GetJokesRankedGivenAudience(inputAudience);
 
         }
 

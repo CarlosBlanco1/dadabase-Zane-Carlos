@@ -98,6 +98,13 @@ namespace dadabase.Controllers
 
         }
 
+        [HttpGet("TimesTold/{jokeName}", Name = "GetTimesJokeWasTold")]
+        public async Task<int> GetNumberOfTimesTold(string jokeName)
+        {
+            _logger.LogInformation("GET request received for Joke controller.");
+            return await dataStore.GetNumberOfTimesTold(jokeName);
+        }
+
     }
 }
 

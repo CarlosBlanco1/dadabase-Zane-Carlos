@@ -121,6 +121,20 @@ namespace dadabase.Data
             return results;
         }
 
+        public async Task<int> GetNumberOfTimesTold(string jokeName)
+        {
+            await Task.CompletedTask;
+            int count = context.Deliveredjokes
+                .Join(context.Jokes,
+                d => d.Jokeid,
+                f => f.Id,
+                (d, f) => new {deliveredJokes = d, Joke = f})
+                .Where(e => e.Joke.Jokename == jokeName)
+                .Count();
+
+            return count;
+        }
+
 
 
     }

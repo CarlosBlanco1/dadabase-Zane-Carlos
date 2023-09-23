@@ -7,6 +7,9 @@
         Task<Joke> AddJoke(Joke Joke);
         Task<Joke> UpdateJoke(Joke Joke);
         Task DeleteJoke(int id);
+        Task<IEnumerable<Joke>> GetJokesByCategory(string category);
+        Task<IEnumerable<Joke>> GetJokesByAudience(string inputAudience);
+        Task<IEnumerable<Joke>> GetJokesByReaction();
         //Task<int> GetTimesTold(int id);
     }
 }

@@ -46,13 +46,6 @@ namespace dadabase.Controllers
             await dataStore.DeleteJoke(id);
         }
 
-        /*[HttpGet("/TimesTold/{id}")]
-        public async Task<int> GetTimesTold(Joke joke)
-        {
-
-            return jokes.Count();
-        }*/
-
         [HttpGet("{id}")]
         public async Task<IResult> Get(int id)
         {
@@ -62,8 +55,44 @@ namespace dadabase.Controllers
             {
                 return Results.NotFound("Invalid recipe id");
             }
-            /*ask about this*/return Results.Ok(joke);
-            
-            }
+            /*ask about this*/
+            return Results.Ok(joke);
+
         }
+
+        [HttpGet("category/{category}", Name = "GetJokesByCategory")]
+        public async Task<IEnumerable<Joke>> GetJokesByCategory(string category)
+        {
+            _logger.LogInformation("GET request received for Joke controller.");
+            return await dataStore.GetJokesByCategory(category);
+        }
+
+        [HttpGet("audience/{audience}", Name = "GetJokesByAudience")]
+        public async Task<IEnumerable<Joke>> GetJokesByAudience(string audience)
+        {
+            _logger.LogInformation("GET request received for Joke controller.");
+            return await dataStore.GetJokesByAudience(audience);
+        }
+
+        [HttpGet("reaction", Name = "GetJokesByReaction")]
+        public async Task<IEnumerable<Joke>> GetJokesByReaction()
+        {
+            _logger.LogInformation("GET request received for Joke controller.");
+            return await dataStore.GetJokesByReaction();
+
+        }
+
+    }
 }
+
+
+
+
+    /*[HttpGet("/TimesTold/{id}")]
+    public async Task<int> GetTimesTold(Joke joke)
+    {
+
+        return jokes.Count();
+    }*/
+
+

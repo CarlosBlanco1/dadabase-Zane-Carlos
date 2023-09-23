@@ -54,10 +54,47 @@ namespace dadabase.Data
             .FirstOrDefaultAsync(r => r.Id == Joke.Id);
             value.Jokename = Joke.Jokename;
             value.Joketext = Joke.Joketext;
-            //ask about changing the category and delivery info as well
             await context.SaveChangesAsync();
             return Joke;
         }
+
+        public async Task<IEnumerable<Joke>> GetJokesByCategory(string category)
+        {
+            var query = from categorizedJoke in context.Categorizedjokes
+                        join jokeCategory in context.Jokecategories on categorizedJoke.Jokecategoryid equals jokeCategory.Id
+                        join joke in context.Jokes on categorizedJoke.Jokeid equals joke.Id
+                        where jokeCategory.Categoryname == category
+                        select joke;
+
+            var results =  await query.ToListAsync();
+            return results;
+        }
+
+        public async Task<IEnumerable<Joke>> GetJokesByAudience(string inputAudience)
+        {
+            var query = from deliveredJoke in context.Deliveredjokes
+                        join audience in context.Audiences on deliveredJoke.Audienceid equals audience.Id
+                        join joke in context.Jokes on deliveredJoke.Jokeid equals joke.Id
+                        where audience.Audiencename == inputAudience
+                        select joke;
+
+            var results = await query.ToListAsync();
+            return results;
+        }
+
+        public async Task<IEnumerable<Joke>> GetJokesByReaction()
+        {
+            var query = from deliveredJoke in context.Deliveredjokes
+                        join jokeReactionCategory in context.Jokereactioncategories on deliveredJoke.Jokereactionid equals jokeReactionCategory.Id
+                        join joke in context.Jokes on deliveredJoke.Jokeid equals joke.Id
+                        orderby joke.Id ascending
+                        select joke;
+
+            var results = await query.ToListAsync();
+            return results;
+        }
+
+
 
     }
 }

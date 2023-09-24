@@ -1,5 +1,6 @@
 ﻿using dadabase.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace dadabase.Controllers
 {
@@ -40,10 +41,18 @@ namespace dadabase.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             _logger.LogInformation("DELETE request received for JokeCategory controller. for {id}.", id);
+            try
+            {
             await dataStore.DeleteJokecategory(id);
+            }
+            catch (DbUpdateException)
+            {
+                return StatusCode(505, "Particular JokeCategory cannot be deleted");
+            }
+            return Ok("Succesful Delete");
         }
 
         [HttpGet("{id}")]
